@@ -1,5 +1,13 @@
 # 双城记 · 项目总览（工作名）
 
+## 🌐 在线访问
+
+> **官网已上线：** https://fengliwei001.github.io/dual-city/
+>
+> 源码仓库：https://github.com/fengliwei001/dual-city
+>
+> 每次推送 main 分支，GitHub Actions 会自动部署更新。
+
 > 深圳教 AI × 云南带玩 —— 文旅 × AI 的双城技能交换与兴趣社交平台
 > 正式名称待定（候选方向：AI城市链接 / AI文旅 / 双城联动）
 
