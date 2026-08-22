@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>报名加入 · 双城记</title>
+<meta name="description" content="填写报名表，加入第一批双城玩家。进群认识来自深圳、杭州、昆明、大理的人。">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="logo" href="index.html" aria-label="双城记 首页">
+      <img class="logo-mark" src="assets/img/logo-mark.svg" alt="双城记 Logo" width="34" height="34">
+      <span class="logo-txt"><b>双城记</b><small>DUAL CITY</small></span>
+    </a>
+    <nav class="nav__links" aria-label="主导航">
+      <div class="nav__item"><a class="nav__link" href="index.html">首页</a></div>
+      <div class="nav__item">
+        <a class="nav__link" href="#" aria-haspopup="true" aria-expanded="false">玩法</a>
+        <div class="dropdown">
+          <a href="scenes/sz-to-yn.html">A. 深圳人想去云南有人带<span class="dd-sub">发需求 · 匹配带玩者 · 报名</span></a>
+          <a href="scenes/yn-learn-ai.html">B. 云南本地人想学 AI<span class="dd-sub">发需求 · 匹配教学者 · 报名</span></a>
+          <a href="scenes/community.html">C. 双方交朋友、建圈子<span class="dd-sub">浏览资料卡 · 进群 · 组局</span></a>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="people.html">找人</a></div>
+      <div class="nav__item"><a class="nav__link" href="demand-new.html">发需求</a></div>
+      <div class="nav__item"><a class="nav__link" href="demands.html">需求墙</a></div>
+      <div class="nav__item"><a class="nav__link" href="routes.html">四城线路</a></div>
+      <div class="nav__item"><a class="nav__link" href="about.html">关于</a></div>
+    </nav>
+    <a class="btn btn--primary nav__cta magnetic" href="join.html">加入我们</a>
+    <button class="nav__burger" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="面包屑"><a href="index.html">首页</a> <span>/</span> <span>报名加入</span></nav>
+    <span class="ph-eyebrow">先收流量 · 再进群 · 后完善名片</span>
+    <h1>加入第一批双城玩家</h1>
+    <p>填一张报名表，运营 24 小时内拉你进群。进群后完善公开名片，就能开始找人、发需求。</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px">
+  <div class="container" style="display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:start" id="join-layout">
+    <div>
+      <form class="form-card" id="join-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="j-name">昵称</label>
+            <input class="input" id="j-name" name="nickname" placeholder="大家怎么称呼你" required>
+            <p class="err-msg">请填写昵称</p>
+          </div>
+          <div class="field">
+            <label for="j-city">常驻城市</label>
+            <select class="input" id="j-city" name="city" required>
+              <option value="">请选择</option>
+              <option>深圳</option>
+              <option>杭州</option>
+              <option>昆明</option>
+              <option>大理</option>
+              <option>其他</option>
+            </select>
+            <p class="err-msg">请选择常驻城市</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>你的角色</label>
+          <div class="radio-row">
+            <label class="radio-box"><input type="radio" name="role" value="想去被带玩" checked>想去云南被带玩</label>
+            <label class="radio-box"><input type="radio" name="role" value="本地可带玩">本地可带玩</label>
+            <label class="radio-box"><input type="radio" name="role" value="都想">都想</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="j-wechat">微信号</label>
+          <input class="input" id="j-wechat" name="wechat" placeholder="运营拉群用，不会公开" required>
+          <p class="hint">仅用于拉你进群，不会展示在公开名片上。</p>
+          <p class="err-msg">请填写微信号</p>
+        </div>
+
+        <div class="field">
+          <label>想学 / 想换的 AI 内容（可多选）</label>
+          <div class="chip-group">
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="AI 入门">AI 入门</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="AI 文案">AI 文案</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="AI 图像">AI 图像</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="AI 编程">AI 编程</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="数据分析">数据分析</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="自媒体运营">自媒体运营</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="智能体搭建">智能体搭建</button>
+            <button type="button" class="chip"><input type="checkbox" name="ai" value="都能教">都能教</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>擅长带你玩（可多选，云南侧优先填）</label>
+          <div class="chip-group">
+            <button type="button" class="chip"><input type="checkbox" name="play" value="私藏路线">私藏路线</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="地道美食">地道美食</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="拍照点位">拍照点位</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="环湖骑行">环湖骑行</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="古镇漫步">古镇漫步</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="咖啡馆巡礼">咖啡馆巡礼</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="接站带路">接站带路</button>
+            <button type="button" class="chip"><input type="checkbox" name="play" value="都行">都行</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="j-bio">一句话介绍</label>
+          <textarea class="input" id="j-bio" name="bio" placeholder="例：深圳 AI 产品经理，想去大理晒太阳；会教提示词，想找人带我骑洱海。"></textarea>
+        </div>
+
+        <div class="field">
+          <label>是否接受付费带玩服务（带玩/陪游/摄影/包车，线下结算）</label>
+          <div class="radio-row">
+            <label class="radio-box"><input type="radio" name="paid" value="可以">可以</label>
+            <label class="radio-box"><input type="radio" name="paid" value="不参与">不参与</label>
+            <label class="radio-box"><input type="radio" name="paid" value="看情况" checked>看情况</label>
+          </div>
+          <p class="hint">V1 平台只做展示与撮合，不抽成、不介入交易，费用线下当面结清。</p>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px">
+          <button class="btn btn--primary" type="submit" style="padding:14px 30px">提交报名</button>
+          <span style="color:var(--ink-400);font-size:13px">提交后显示进群入口（演示）</span>
+        </div>
+      </form>
+
+      <!-- 成功面板 -->
+      <div class="form-card success-panel" id="join-success" style="display:none">
+        <div class="sp-ico">✓</div>
+        <h2>报名成功，欢迎加入！</h2>
+        <p>运营会在 24 小时内加你微信并拉群。扫码进群，先认识第一批双城玩家。</p>
+        <div class="qr-row">
+          <div class="qr-item">
+            <div class="qr-box"><span>微信群二维码<br>（运营中，即将就位）</span></div>
+            <small>四城总群</small>
+          </div>
+          <div class="qr-item">
+            <div class="qr-box"><span>公众号二维码<br>（运营中，即将就位）</span></div>
+            <small>攻略与故事</small>
+          </div>
+        </div>
+        <div style="margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <a class="btn btn--primary" href="people.html">完善公开名片</a>
+          <a class="btn btn--ghost" href="demand-new.html">发一个需求</a>
+        </div>
+      </div>
+    </div>
+
+    <aside>
+      <div class="qr-panel reveal">
+        <h3>先进群，认识人</h3>
+        <p>扫码加入四城总群。群规：进群改昵称「城市-昵称-想交换什么」。</p>
+        <div class="qr-box"><span>微信群二维码<br>（运营中，即将就位）</span></div>
+        <p style="margin-top:14px">也可以关注公众号和小红书，攻略先看起来</p>
+      </div>
+      <div class="notice reveal" style="margin-top:20px">
+        <div>
+          <b>安全提示</b>
+          <p style="margin-top:4px">线下见面请选公共场所、报备行程；付费服务线下当面结清；遇到问题找群主或举报。</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="f-brand">
+        <h4>双城记</h4>
+        <p>深圳教 AI，云南带玩。用技能换风景，用交换交朋友。</p>
+      </div>
+      <div>
+        <h4>玩法</h4>
+        <ul>
+          <li><a href="scenes/sz-to-yn.html">深圳人想去云南有人带</a></li>
+          <li><a href="scenes/yn-learn-ai.html">云南本地人想学 AI</a></li>
+          <li><a href="scenes/community.html">交朋友、建圈子</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>四城</h4>
+        <ul>
+          <li><a href="routes.html">深圳</a></li>
+          <li><a href="routes.html">杭州</a></li>
+          <li><a href="routes.html">昆明</a></li>
+          <li><a href="routes.html">大理</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社区</h4>
+        <ul>
+          <li><a href="people.html">找人</a></li>
+          <li><a href="demand-new.html">发需求</a></li>
+          <li><a href="demands.html">需求墙</a></li>
+          <li><a href="about.html">关于与规则</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span data-year></span> 双城记 · 工作名，正式名待定</span>
+      <span>文旅 × AI 技能交换社区 · 静态原型演示</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

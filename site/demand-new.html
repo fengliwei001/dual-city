@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>发需求 · 双城记</title>
+<meta name="description" content="发一个需求，让系统按标签帮你匹配推荐。找带玩、找 AI 教学、找搭子。">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="logo" href="index.html" aria-label="双城记 首页">
+      <img class="logo-mark" src="assets/img/logo-mark.svg" alt="双城记 Logo" width="34" height="34">
+      <span class="logo-txt"><b>双城记</b><small>DUAL CITY</small></span>
+    </a>
+    <nav class="nav__links" aria-label="主导航">
+      <div class="nav__item"><a class="nav__link" href="index.html">首页</a></div>
+      <div class="nav__item">
+        <a class="nav__link" href="#" aria-haspopup="true" aria-expanded="false">玩法</a>
+        <div class="dropdown">
+          <a href="scenes/sz-to-yn.html">A. 深圳人想去云南有人带<span class="dd-sub">发需求 · 匹配带玩者 · 报名</span></a>
+          <a href="scenes/yn-learn-ai.html">B. 云南本地人想学 AI<span class="dd-sub">发需求 · 匹配教学者 · 报名</span></a>
+          <a href="scenes/community.html">C. 双方交朋友、建圈子<span class="dd-sub">浏览资料卡 · 进群 · 组局</span></a>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="people.html">找人</a></div>
+      <div class="nav__item"><a class="nav__link is-active" href="demand-new.html">发需求</a></div>
+      <div class="nav__item"><a class="nav__link" href="demands.html">需求墙</a></div>
+      <div class="nav__item"><a class="nav__link" href="routes.html">四城线路</a></div>
+      <div class="nav__item"><a class="nav__link" href="about.html">关于</a></div>
+    </nav>
+    <a class="btn btn--primary nav__cta magnetic" href="join.html">加入我们</a>
+    <button class="nav__burger" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="面包屑"><a href="index.html">首页</a> <span>/</span> <span>发需求</span></nav>
+    <span class="ph-eyebrow">先发需求 · 先匹配 · 先成交</span>
+    <h1>发一个需求</h1>
+    <p>想要什么、什么时候、什么形式、你能拿什么换。提交后系统按标签推荐人，也会出现在需求墙。</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <form class="form-card form-card--wide" id="demand-form" novalidate>
+      <div class="field">
+        <label>我想要</label>
+        <div class="radio-row">
+          <label class="radio-box"><input type="radio" name="want" value="找带玩" checked>找带玩</label>
+          <label class="radio-box"><input type="radio" name="want" value="找 AI 教学">找 AI 教学</label>
+          <label class="radio-box"><input type="radio" name="want" value="找搭子">找搭子</label>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="dm-loc">我在</label>
+          <select class="input" id="dm-loc" name="location" required>
+            <option value="">请选择城市</option>
+            <option>深圳</option>
+            <option>杭州</option>
+            <option>昆明</option>
+            <option>大理</option>
+            <option>其他</option>
+          </select>
+          <p class="err-msg">请选择你所在的城市</p>
+        </div>
+        <div class="field">
+          <label for="dm-time">时间</label>
+          <select class="input" id="dm-time" name="time">
+            <option>近期（1-2 周内）</option>
+            <option>本周末</option>
+            <option>下个月</option>
+            <option>旅居期间</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>想找的人（标签，可多选）</label>
+        <div class="chip-group" id="dm-tags">
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="常驻大理">常驻大理</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="常驻昆明">常驻昆明</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="擅长地道美食">擅长地道美食</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="擅长拍照点位">擅长拍照点位</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="环湖骑行">环湖骑行</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="AI 入门">AI 入门</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="AI 文案">AI 文案</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="AI 编程">AI 编程</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="自媒体运营">自媒体运营</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="摄影">摄影</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="咖啡">咖啡</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="徒步">徒步</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="旅行搭子">旅行搭子</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="学习搭子">学习搭子</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="资源合作">资源合作</button>
+          <button type="button" class="chip"><input type="checkbox" name="tags" value="纯交朋友">纯交朋友</button>
+        </div>
+        <p class="hint">这些标签会用于匹配推荐。也可以自定义：直接写进下面的话里。</p>
+      </div>
+
+      <div class="field">
+        <label for="dm-form">形式</label>
+        <div class="radio-row">
+          <label class="radio-box"><input type="radio" name="form" value="线上">线上</label>
+          <label class="radio-box"><input type="radio" name="form" value="线下" checked>线下</label>
+          <label class="radio-box"><input type="radio" name="form" value="均可">均可</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="dm-offer">我能提供（交换）</label>
+        <input class="input" id="dm-offer" name="offer" placeholder="例：1 小时 AI 入门课 / 一次资源对接 / 带玩半天 / 其他">
+        <p class="hint">不强制对等，写上你的诚意。留空也可以。</p>
+      </div>
+
+      <div class="field">
+        <label for="dm-desc">一句话需求</label>
+        <textarea class="input" id="dm-desc" name="desc" placeholder="例：11 月去大理旅居两周，想找人带我环洱海骑行，我用 AI 入门课交换。" required></textarea>
+        <p class="err-msg">写一句话，让大家知道你想要什么</p>
+      </div>
+
+      <div class="field">
+        <label for="dm-contact">联系方式（微信，可选）</label>
+        <input class="input" id="dm-contact" name="contact" placeholder="公开或进群获取都行">
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button class="btn btn--primary" type="submit" style="padding:14px 30px">提交需求，看匹配</button>
+        <span style="color:var(--ink-400);font-size:13px">提交后跳转匹配推荐页（演示）</span>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="f-brand">
+        <h4>双城记</h4>
+        <p>深圳教 AI，云南带玩。用技能换风景，用交换交朋友。</p>
+      </div>
+      <div>
+        <h4>玩法</h4>
+        <ul>
+          <li><a href="scenes/sz-to-yn.html">深圳人想去云南有人带</a></li>
+          <li><a href="scenes/yn-learn-ai.html">云南本地人想学 AI</a></li>
+          <li><a href="scenes/community.html">交朋友、建圈子</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>四城</h4>
+        <ul>
+          <li><a href="routes.html">深圳</a></li>
+          <li><a href="routes.html">杭州</a></li>
+          <li><a href="routes.html">昆明</a></li>
+          <li><a href="routes.html">大理</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社区</h4>
+        <ul>
+          <li><a href="people.html">找人</a></li>
+          <li><a href="demand-new.html">发需求</a></li>
+          <li><a href="demands.html">需求墙</a></li>
+          <li><a href="about.html">关于与规则</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span data-year></span> 双城记 · 工作名，正式名待定</span>
+      <span>文旅 × AI 技能交换社区 · 静态原型演示</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

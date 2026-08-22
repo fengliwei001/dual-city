@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>找人 · 双城记</title>
+<meta name="description" content="浏览双城记公开名片，按城市、技能、爱好、交友目的筛选，找到想认识的搭子。">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="logo" href="index.html" aria-label="双城记 首页">
+      <img class="logo-mark" src="assets/img/logo-mark.svg" alt="双城记 Logo" width="34" height="34">
+      <span class="logo-txt"><b>双城记</b><small>DUAL CITY</small></span>
+    </a>
+    <nav class="nav__links" aria-label="主导航">
+      <div class="nav__item"><a class="nav__link" href="index.html">首页</a></div>
+      <div class="nav__item">
+        <a class="nav__link" href="#" aria-haspopup="true" aria-expanded="false">玩法</a>
+        <div class="dropdown">
+          <a href="scenes/sz-to-yn.html">A. 深圳人想去云南有人带<span class="dd-sub">发需求 · 匹配带玩者 · 报名</span></a>
+          <a href="scenes/yn-learn-ai.html">B. 云南本地人想学 AI<span class="dd-sub">发需求 · 匹配教学者 · 报名</span></a>
+          <a href="scenes/community.html">C. 双方交朋友、建圈子<span class="dd-sub">浏览资料卡 · 进群 · 组局</span></a>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link is-active" href="people.html">找人</a></div>
+      <div class="nav__item"><a class="nav__link" href="demand-new.html">发需求</a></div>
+      <div class="nav__item"><a class="nav__link" href="demands.html">需求墙</a></div>
+      <div class="nav__item"><a class="nav__link" href="routes.html">四城线路</a></div>
+      <div class="nav__item"><a class="nav__link" href="about.html">关于</a></div>
+    </nav>
+    <a class="btn btn--primary nav__cta magnetic" href="join.html">加入我们</a>
+    <button class="nav__burger" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="面包屑"><a href="index.html">首页</a> <span>/</span> <span>找人</span></nav>
+    <span class="ph-eyebrow">公开名片 · 无需认证</span>
+    <h1>找对的人</h1>
+    <p>每个人都是一张公开名片：谁、在哪、会什么、想换什么。按标签筛选，或去发一个需求让系统帮你推荐。</p>
+    <div class="ph-actions">
+      <a class="btn btn--primary" href="demand-new.html">发需求，让系统推荐</a>
+      <a class="btn btn--ghost" href="join.html">先完善我的名片</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <!-- 筛选栏 -->
+    <div class="filterbar" data-filterbar>
+      <div class="fb-row">
+        <span class="fb-label">常驻城市</span>
+        <button class="filter-chip" data-filter="city" data-value="sz">深圳</button>
+        <button class="filter-chip" data-filter="city" data-value="hz">杭州</button>
+        <button class="filter-chip" data-filter="city" data-value="km">昆明</button>
+        <button class="filter-chip" data-filter="city" data-value="dl">大理</button>
+      </div>
+      <div class="fb-row">
+        <span class="fb-label">角色</span>
+        <button class="filter-chip" data-filter="role" data-value="teach">教 AI</button>
+        <button class="filter-chip" data-filter="role" data-value="play">带玩</button>
+      </div>
+      <div class="fb-row">
+        <span class="fb-label">交友目的</span>
+        <button class="filter-chip" data-filter="goal" data-value="travel">旅行搭子</button>
+        <button class="filter-chip" data-filter="goal" data-value="study">学习搭子</button>
+        <button class="filter-chip" data-filter="goal" data-value="res">资源合作</button>
+        <button class="filter-chip" data-filter="goal" data-value="friend">纯交朋友</button>
+      </div>
+      <div class="fb-row">
+        <span class="fb-label">形式</span>
+        <button class="filter-chip" data-filter="form" data-value="online">线上</button>
+        <button class="filter-chip" data-filter="form" data-value="offline">线下</button>
+        <button class="filter-chip" data-filter="form" data-value="both">都可</button>
+      </div>
+    </div>
+
+    <p style="margin-bottom:20px;color:var(--ink-400);font-size:13.5px" id="people-count">共 8 位</p>
+
+    <div class="people-grid">
+      <!-- 深圳侧 教方 -->
+      <article class="people-card reveal" data-people-card data-city="sz" data-role="teach" data-goal="travel,friend" data-form="both">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#e8421f">阿哲</span><span class="online-dot" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">阿哲 <span class="pc-role pc-role--teach">教 AI</span></div>
+            <div class="pc-meta">25-30 · 深圳南山</div>
+          </div>
+        </div>
+        <p class="pc-bio">在南山写代码，想去大理晒太阳。可以教 AI 工具入门和提示词，希望有人带我骑洱海。</p><div class="interact-strip"><span class="is-item">♥ <span>52</span></span><span class="is-item">💬 <span>56</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">技能：AI 工具</span>
+          <span class="tag tag--label">AI 编程</span>
+          <span class="tag tag--label">可教 1h 入门课</span>
+          <span class="tag tag--accent">旅行搭子</span>
+          <span class="tag tag--accent">周末</span>
+          <span class="tag tag--outline">线上+线下</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="阿哲">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <article class="people-card reveal" data-people-card data-city="sz" data-role="teach" data-goal="study,res" data-form="online">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#0e7c7b">小林</span><span class="online-dot" style="background:#b8c4c0;animation:none" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">小林 <span class="pc-role pc-role--teach">教 AI</span></div>
+            <div class="pc-meta">31-38 · 深圳福田</div>
+          </div>
+        </div>
+        <p class="pc-bio">后端工程师，周末有空。能讲 AI 应用开发、智能体搭建，想认识云南的创作者和商家。</p><div class="interact-strip"><span class="is-item">♥ <span>89</span></span><span class="is-item">💬 <span>49</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">技能：AI 编程</span>
+          <span class="tag tag--label">智能体搭建</span>
+          <span class="tag tag--label">可做资源对接</span>
+          <span class="tag tag--accent">学习搭子</span>
+          <span class="tag tag--accent">资源合作</span>
+          <span class="tag tag--outline">线上为主</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="小林">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <article class="people-card reveal" data-people-card data-city="hz" data-role="teach" data-goal="travel,friend" data-form="both">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#2f5d50">橙子</span><span class="online-dot" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">橙子 <span class="pc-role pc-role--teach">教 AI</span></div>
+            <div class="pc-meta">25-30 · 杭州西湖</div>
+          </div>
+        </div>
+        <p class="pc-bio">互联网运营，会做 AI 内容和小红书。11 月去昆明旅居，想找本地朋友带吃带玩。</p><div class="interact-strip"><span class="is-item">♥ <span>126</span></span><span class="is-item">💬 <span>42</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">技能：AI 文案</span>
+          <span class="tag tag--label">自媒体运营</span>
+          <span class="tag tag--label">可教 1h 内容课</span>
+          <span class="tag tag--accent">旅行搭子</span>
+          <span class="tag tag--accent">纯交朋友</span>
+          <span class="tag tag--outline">线上+线下</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="橙子">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <article class="people-card reveal" data-people-card data-city="sz" data-role="teach" data-goal="res,study" data-form="online">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#0e7c7b">大熊</span><span class="online-dot" style="background:#b8c4c0;animation:none" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">大熊 <span class="pc-role pc-role--teach">教 AI</span></div>
+            <div class="pc-meta">31-38 · 深圳宝安</div>
+          </div>
+        </div>
+        <p class="pc-bio">产品经理，带过 AI 训练营。可以给民宿主理人做一次线上 AI 提效咨询，换云南朋友。</p><div class="interact-strip"><span class="is-item">♥ <span>163</span></span><span class="is-item">💬 <span>35</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">技能：AI 工具</span>
+          <span class="tag tag--label">产品设计</span>
+          <span class="tag tag--label">可做职业交流</span>
+          <span class="tag tag--accent">学习搭子</span>
+          <span class="tag tag--accent">资源合作</span>
+          <span class="tag tag--outline">线上为主</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="大熊">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <!-- 云南侧 带方 -->
+      <article class="people-card reveal" data-people-card data-city="dl" data-role="play" data-goal="travel,friend" data-form="offline">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#0e7c7b">阿花</span><span class="online-dot" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">阿花 <span class="pc-role pc-role--play">带玩</span></div>
+            <div class="pc-meta">25-30 · 大理古城</div>
+          </div>
+        </div>
+        <p class="pc-bio">大理生活 3 年，民宿主理人加咖啡师。会带人环洱海骑行、找小众咖啡馆，想学 AI 做民宿内容。</p><div class="interact-strip"><span class="is-item">♥ <span>200</span></span><span class="is-item">💬 <span>28</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">带玩：环湖骑行</span>
+          <span class="tag tag--label">咖啡馆巡礼</span>
+          <span class="tag tag--label">可付费带玩</span>
+          <span class="tag tag--accent">旅行搭子</span>
+          <span class="tag tag--accent">想学 AI 文案</span>
+          <span class="tag tag--outline">线下</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="阿花">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <article class="people-card reveal" data-people-card data-city="dl" data-role="play" data-goal="friend,travel" data-form="offline">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#e8421f">老白</span><span class="online-dot" style="background:#b8c4c0;animation:none" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">老白 <span class="pc-role pc-role--play">带玩</span></div>
+            <div class="pc-meta">31-38 · 大理双廊</div>
+          </div>
+        </div>
+        <p class="pc-bio">摄影爱好者，熟洱海东岸每个拍照点。可以带拍一日，也接摄影服务，想学 AI 修图和接单。</p><div class="interact-strip"><span class="is-item">♥ <span>37</span></span><span class="is-item">💬 <span>21</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">带玩：拍照点位</span>
+          <span class="tag tag--label">旅拍跟拍</span>
+          <span class="tag tag--label">可付费摄影</span>
+          <span class="tag tag--accent">纯交朋友</span>
+          <span class="tag tag--accent">想学 AI 图像</span>
+          <span class="tag tag--outline">线下</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="老白">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <article class="people-card reveal" data-people-card data-city="km" data-role="play" data-goal="study,res" data-form="both">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#2f5d50">米粒</span><span class="online-dot" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">米粒 <span class="pc-role pc-role--play">带玩</span></div>
+            <div class="pc-meta">18-24 · 昆明官渡</div>
+          </div>
+        </div>
+        <p class="pc-bio">昆明新媒体人，熟悉斗南花市和篆新菜市场。能带逛本地生活，想学 AI 做爆款内容。</p><div class="interact-strip"><span class="is-item">♥ <span>74</span></span><span class="is-item">💬 <span>14</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">带玩：地道美食</span>
+          <span class="tag tag--label">本地生活</span>
+          <span class="tag tag--label">可付费陪游</span>
+          <span class="tag tag--accent">学习搭子</span>
+          <span class="tag tag--accent">想学自媒体</span>
+          <span class="tag tag--outline">线上+线下</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="米粒">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+
+      <article class="people-card reveal" data-people-card data-city="km" data-role="play" data-goal="travel,friend" data-form="offline">
+        <div class="pc-top">
+          <span class="avatar-wrap pc-avatar-wrap"><span class="avatar" style="background:#e8421f">阿树</span><span class="online-dot" style="background:#b8c4c0;animation:none" aria-hidden="true"></span></span>
+          <div>
+            <div class="pc-name">阿树 <span class="pc-role pc-role--play">带玩</span></div>
+            <div class="pc-meta">31-38 · 昆明翠湖</div>
+          </div>
+        </div>
+        <p class="pc-bio">本地包车师傅，熟悉云南全域路线。可以包车带游石林、抚仙湖，想学 AI 规划路线和接单。</p><div class="interact-strip"><span class="is-item">♥ <span>111</span></span><span class="is-item">💬 <span>7</span></span><span class="is-item">↗</span></div><div class="time-stamp">3 天前加入</div>
+        <div class="pc-tags">
+          <span class="tag tag--label">带玩：包车带游</span>
+          <span class="tag tag--label">私藏路线</span>
+          <span class="tag tag--label">可付费包车</span>
+          <span class="tag tag--accent">旅行搭子</span>
+          <span class="tag tag--accent">想学 AI 入门</span>
+          <span class="tag tag--outline">线下</span>
+        </div>
+        <div class="pc-foot">
+          <a class="btn btn--primary btn--sm" href="join.html" data-join-pop="阿树">约局</a>
+          <a class="btn btn--ghost btn--sm" href="join.html">进群认识</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="empty-state" id="people-empty" style="display:none">
+      <div class="es-ico">🔍</div>
+      <h3>暂时没有完全匹配的人</h3>
+      <p>别急，先进群认识人，或者发个需求让系统帮你留意。</p>
+      <a class="btn btn--primary" href="demand-new.html">发需求</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="f-brand">
+        <h4>双城记</h4>
+        <p>深圳教 AI，云南带玩。用技能换风景，用交换交朋友。</p>
+      </div>
+      <div>
+        <h4>玩法</h4>
+        <ul>
+          <li><a href="scenes/sz-to-yn.html">深圳人想去云南有人带</a></li>
+          <li><a href="scenes/yn-learn-ai.html">云南本地人想学 AI</a></li>
+          <li><a href="scenes/community.html">交朋友、建圈子</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>四城</h4>
+        <ul>
+          <li><a href="routes.html">深圳</a></li>
+          <li><a href="routes.html">杭州</a></li>
+          <li><a href="routes.html">昆明</a></li>
+          <li><a href="routes.html">大理</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社区</h4>
+        <ul>
+          <li><a href="people.html">找人</a></li>
+          <li><a href="demand-new.html">发需求</a></li>
+          <li><a href="demands.html">需求墙</a></li>
+          <li><a href="about.html">关于与规则</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span data-year></span> 双城记 · 工作名，正式名待定</span>
+      <span>文旅 × AI 技能交换社区 · 静态原型演示</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 约局弹窗 -->
+<dialog id="join-pop" class="form-card" style="border:0;border-radius:20px;max-width:440px;padding:0">
+  <div style="padding:32px">
+    <h2 style="font-size:20px;font-weight:800">约 <span data-pop-name>对方</span> 一起玩</h2>
+    <p style="color:var(--ink-500);font-size:14px;margin-top:8px">V1 用表单 + 群内人工撮合完成约局，站内私信将在二期上线。</p>
+    <div class="field" style="margin-top:20px">
+      <label for="pop-time">想约的时间</label>
+      <select class="input" id="pop-time">
+        <option>本周末</option>
+        <option>近期（1-2 周内）</option>
+        <option>下个月</option>
+        <option>旅居期间</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="pop-form">形式</label>
+      <div class="radio-row">
+        <label class="radio-box"><input type="radio" name="popform" checked>线上</label>
+        <label class="radio-box"><input type="radio" name="popform">线下</label>
+        <label class="radio-box"><input type="radio" name="popform">都可以</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="pop-msg">想交换什么（一句话）</label>
+      <textarea class="input" id="pop-msg" placeholder="例：我教 1 小时 AI 入门，换你带我环洱海骑行"></textarea>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn--primary" style="flex:1" onclick="this.closest('dialog').close();alert('约局意向已提交！运营会在群里帮你撮合。')">提交约局意向</button>
+      <button class="btn btn--ghost" id="join-pop-close">取消</button>
+    </div>
+  </div>
+</dialog>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

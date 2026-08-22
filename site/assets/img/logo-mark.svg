@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="lgBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7a5c"/>
+      <stop offset="1" stop-color="#e8421f"/>
+    </linearGradient>
+    <linearGradient id="lgMtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ffe9e2"/>
+    </linearGradient>
+  </defs>
+  <!-- 圆角底 -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#lgBg)"/>
+  <!-- 太阳 -->
+  <circle cx="47" cy="20" r="5" fill="#ffd9c7"/>
+  <!-- 远山 -->
+  <path d="M8 42 L18 26 L24 34 L30 24 L40 42 Z" fill="url(#lgMtn)" opacity=".55"/>
+  <!-- 近山（双城） -->
+  <path d="M10 46 L24 30 L32 40 L36 34 L54 46 Z" fill="#ffffff"/>
+  <!-- 山间连接弧线（交换） -->
+  <path d="M26 40 Q32 47 38 40" fill="none" stroke="#ff5a3c" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- 连接点 -->
+  <circle cx="26" cy="40" r="2.6" fill="#ff5a3c"/>
+  <circle cx="38" cy="40" r="2.6" fill="#ff5a3c"/>
+  <!-- 湖面倒影 -->
+  <path d="M14 52 Q20 49 26 52 Q32 55 38 52 Q44 49 50 52" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/>
+</svg>
