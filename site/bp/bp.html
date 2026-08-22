@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>双城记 · 路演 BP</title>
+<style>
+@page { size: A4 landscape; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; color: #2a211c; }
+.slide { width: 297mm; height: 209.6mm; overflow: hidden; page-break-after: always; padding: 16mm 18mm; background: #faf7f2; position: relative; }
+.slide:last-child { page-break-after: auto; }
+.sec-no { font-size: 14px; font-weight: 800; letter-spacing: 4px; color: #ff5a3c; }
+.sec-title { font-size: 36px; font-weight: 900; margin-top: 8px; letter-spacing: 2px; }
+.sec-sub { font-size: 16px; color: #6b5d52; margin-top: 10px; }
+.spacer { height: 30px; }
+.card { background: #ffffff; padding: 22px 24px; }
+.card h3 { font-size: 18px; font-weight: 800; }
+.card li { font-size: 14px; color: #6b5d52; margin-top: 8px; line-height: 1.7; list-style: none; }
+.ico { font-size: 24px; margin-bottom: 8px; }
+.txt-orange { color: #ff5a3c; } .txt-teal { color: #0e7c7b; }
+.swap-node { background: #fff; padding: 16px; text-align: center; border-top: 6px solid #ddd; }
+.swap-sz { border-top-color: #ff5a3c; } .swap-yn { border-top-color: #0e7c7b; } .swap-core { border-top-color: #ffd9c7; }
+.swap-node h4 { font-size: 16px; margin-top: 6px; }
+.swap-node p { font-size: 13px; color: #6b5d52; margin-top: 6px; line-height: 1.6; }
+.feat { background: #fff; padding: 16px 18px; }
+.feat h4 { font-size: 15px; font-weight: 800; }
+.feat p { font-size: 13px; color: #6b5d52; margin-top: 6px; line-height: 1.6; }
+.live-item { background: #ffe9e2; border: 1px solid #ffd0c0; padding: 8px 12px; font-size: 13px; font-weight: 700; color: #e8421f; text-align: center; }
+.m-card { background: #fff; padding: 18px; text-align: center; }
+.m-card .m-num { font-size: 32px; font-weight: 900; color: #ff5a3c; }
+.m-card .m-label { font-size: 14px; font-weight: 700; margin-top: 6px; }
+.m-card .m-desc { font-size: 12px; color: #6b5d52; margin-top: 6px; line-height: 1.6; }
+.city img { width: 100%; height: 60px; }
+.city b { display: block; margin-top: 4px; font-size: 14px; }
+.city small { color: #8d7e72; font-size: 11px; }
+.b-phase { font-size: 13px; font-weight: 900; color: #ff5a3c; letter-spacing: 1px; }
+.b-name { font-size: 15px; font-weight: 800; }
+.b-desc { font-size: 13px; color: #6b5d52; margin-top: 4px; }
+.b-status { font-size: 12px; font-weight: 700; padding: 5px 14px; }
+.st-now { background: #ff5a3c; color: #fff; } .st-next { background: #ffe9e2; color: #e8421f; } .st-future { background: #e9e0d4; color: #6b5d52; }
+.data-cell { background: #fff; padding: 14px; text-align: center; }
+.data-cell .d-num { font-size: 26px; font-weight: 900; color: #0e7c7b; }
+.data-cell .d-num.orange { color: #ff5a3c; }
+.data-cell .d-label { font-size: 13px; font-weight: 700; margin-top: 4px; }
+.data-cell .d-note { font-size: 11px; color: #8d7e72; margin-top: 4px; }
+.cmp-table { width: 100%; border-collapse: collapse; background: #fff; }
+.cmp-table th { background: #0e333b; color: #fff; font-size: 12px; padding: 12px 8px; text-align: center; }
+.cmp-table td { font-size: 12px; padding: 10px; text-align: center; border-bottom: 1px solid #e9e0d4; }
+.cmp-table td:first-child { font-weight: 700; text-align: left; }
+.cmp-table th.hl { background: #ff5a3c; }
+.yes { color: #0e7c7b; font-weight: 800; } .no { color: #b3a79c; }
+.t-avatar { font-size: 24px; font-weight: 900; color: #fff; background: #ff7a5c; width: 58px; height: 58px; line-height: 58px; text-align: center; display: inline-block; border-radius: 29px; }
+.t-role { font-size: 13px; color: #ff5a3c; font-weight: 700; margin-top: 4px; }
+.advisor { background: #fff; padding: 10px 12px; }
+.advisor .a-tag { font-size: 11px; font-weight: 800; color: #0e7c7b; background: #e0f0ee; padding: 3px 10px; }
+.advisor p { font-size: 13px; color: #6b5d52; line-height: 1.6; margin-top: 6px; }
+.fund-left { background: #0e333b; color: #fff; padding: 20px; }
+.fund-left .f-amount { font-size: 38px; font-weight: 900; }
+.fund-left .f-sub { font-size: 14px; color: rgba(255,255,255,0.75); margin-top: 6px; }
+.fund-left .f-item { font-size: 13px; color: rgba(255,255,255,0.9); margin-top: 10px; }
+.alloc h4 { font-size: 16px; font-weight: 800; }
+.a-name { font-size: 13px; font-weight: 700; display: inline-block; width: 100px; }
+.a-track { display: inline-block; width: 140px; height: 10px; background: #f2ece3; vertical-align: middle; }
+.a-fill { display: block; height: 100%; }
+.a-pct { font-size: 13px; font-weight: 800; }
+.alloc-note { margin-top: 10px; font-size: 11px; color: #8d7e72; }
+.mile { background: #fff; padding: 16px; border-top: 5px solid #ff5a3c; }
+.mile .m-phase { font-size: 12px; font-weight: 900; color: #ff5a3c; letter-spacing: 2px; }
+.mile h4 { font-size: 15px; margin-top: 4px; }
+.mile p { font-size: 12px; color: #6b5d52; margin-top: 4px; line-height: 1.6; }
+.end { background: #0e333b; color: #fff; text-align: center; }
+.end h1 { font-size: 44px; font-weight: 900; letter-spacing: 6px; color: #fff; }
+.end .e-sub { font-size: 17px; color: rgba(255,255,255,0.85); margin-top: 16px; letter-spacing: 2px; }
+.end .e-url { font-size: 15px; color: #ffb49c; margin-top: 10px; font-weight: 700; }
+.foot-note { position: absolute; bottom: 12px; left: 48px; right: 48px; font-size: 11px; color: #b3a79c; }
+.cover { background: #0e333b; color: #fff; }
+.cover h1 { font-size: 48px; font-weight: 900; letter-spacing: 5px; line-height: 1.25; color: #fff; }
+.cover h1 span { color: #ffb49c; }
+.cover .slogan { font-size: 20px; color: rgba(255,255,255,0.92); margin-top: 14px; letter-spacing: 2px; }
+.cover .url { font-size: 14px; color: rgba(255,255,255,0.65); margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0e333b;border-radius:16px"><tr><td style="padding:20mm 24mm;height:190.5mm">
+<div style="color:#fff;display:flex;justify-content:space-between;align-items:center">
+  <div><img src="img/logo-mark.svg" width="44" height="44" style="border-radius:12px;vertical-align:middle"> <b style="font-size:24px;letter-spacing:4px">双城记</b><br><small style="font-size:10px;letter-spacing:5px;color:rgba(255,255,255,.6)">DUAL CITY</small></div>
+  <span style="font-size:12px;color:#fff;background:rgba(255,255,255,.16);padding:7px 18px;border-radius:999px">种子轮 · 商业计划书</span>
+</div>
+<div style="margin-top:60px;color:#fff">
+  <h1 style="font-size:48px;font-weight:900;letter-spacing:5px;line-height:1.25">深圳教 AI，<br>云南<span style="color:#ffb49c">带</span>你玩</h1>
+  <p style="font-size:20px;color:rgba(255,255,255,.92);margin-top:14px;letter-spacing:2px">用技能换风景，用交换交朋友</p>
+  <p style="font-size:14px;color:rgba(255,255,255,.65);margin-top:8px">文旅 × AI 技能交换社区 · 官网已上线</p>
+</div>
+<div style="margin-top:70px;color:rgba(255,255,255,.8);font-size:14px">📍 深圳 · 杭州 × 昆明 · 大理　　🌐 https://fengliwei001.github.io/dual-city/</div>
+</td></tr></table>
+<div ><span>双城记 DUAL CITY</span><span>2026 · 种子轮 BP</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">01 · 痛点与机会</div>
+  <h2 class="sec-title">两个真实痛点，一个交叉机会</h2>
+  <p class="sec-sub">文旅与 AI 正在交叉，但中间缺少一个社区化的连接器</p>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="50%" style="padding-right:8mm"><div class="card">
+      <div class="ico bg-orange">🧭</div>
+      <h3>深圳 / 杭州侧：想去云南，怕踩坑、怕无聊</h3>
+      <ul>
+        <li>跟团游缺乏真实感，攻略千篇一律</li>
+        <li>一个人旅居，缺本地朋友、缺地道玩法</li>
+        <li>有 AI 技能和资源，却不知道怎么交换出去</li>
+      </ul>
+    </div></td>
+    <td width="50%" style="padding-left:8mm"><div class="card">
+      <div class="ico bg-teal">🌱</div>
+      <h3>昆明 / 大理侧：有在地生活，想学 AI、缺连接</h3>
+      <ul>
+        <li>民宿主、咖啡师、创作者想用 AI 提效，缺人教</li>
+        <li>有带玩能力和本地资源，缺一线城市的人脉</li>
+        <li>想接付费服务（带玩/陪游/摄影/包车），缺渠道</li>
+      </ul>
+    </div></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>02</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">02 · 解决方案</div>
+  <h2 class="sec-title">双城交换机制：技能换风景</h2>
+  <p class="sec-sub">平台提供标准参考，但不强制。自由组局是默认原则</p>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="30%" style="padding-right:4mm"><div class="swap-node swap-sz">
+      <div class="sn-tag txt-orange">深圳 / 杭州侧</div>
+      <h4>教 AI · 给资源</h4>
+      <p>1 小时 AI 入门课<br>一次资源对接<br>一次职业交流</p>
+    </div></td>
+    <td width="6%" style="text-align:center;font-size:24px;color:#ff5a3c;font-weight:900">⇄</td>
+    <td width="28%" style="padding:0 4mm"><div class="swap-node swap-core">
+      <div class="sn-tag txt-orange">交换</div>
+      <h4>公开名片 + 标签匹配</h4>
+      <p>13 类标签 · 城市联动<br>需求墙 · 匹配推荐<br>约局 · 进群撮合</p>
+    </div></td>
+    <td width="6%" style="text-align:center;font-size:24px;color:#ff5a3c;font-weight:900">⇄</td>
+    <td width="30%" style="padding-left:4mm"><div class="swap-node swap-yn">
+      <div class="sn-tag txt-teal">昆明 / 大理侧</div>
+      <h4>带玩 · 给在地</h4>
+      <p>半天陪玩 · 接站<br>带吃喝 · 带逛私藏<br>可付费：带玩/摄影/包车</p>
+    </div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="50%" style="padding-right:8mm"><div class="card" style="padding:14px 16px">
+      <h3 style="font-size:15px">四种交换形式</h3>
+      <p style="font-size:12px;color:#6b5d52;margin-top:5px">一对一互换 · 一对多教学 · 小团对小团 · 自由组局（不强制）</p>
+    </div></td>
+    <td width="50%" style="padding-left:8mm"><div class="card" style="padding:14px 16px">
+      <h3 style="font-size:15px">付费服务补充（线下结算）</h3>
+      <p style="font-size:12px;color:#6b5d52;margin-top:5px">带玩服务费 · 陪游费 · 摄影费 · 包车费，平台先只做撮合不抽成</p>
+    </div></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>03</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">03 · 产品与现状</div>
+  <h2 class="sec-title">官网已上线，产品闭环可跑通</h2>
+  <p class="sec-sub">轻社群官网 + 带产品的二级页：匹配 / 报名 / 约局</p>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="33%" style="padding-right:4mm"><div class="feat"><div class="ico bg-orange">🪪</div><h4>公开名片</h4><p>13 类标签：性别、年龄、城市、技能、爱好、交友目的等，无需认证</p></div></td>
+    <td width="33%" style="padding:0 4mm"><div class="feat"><div class="ico bg-teal">🔗</div><h4>匹配系统</h4><p>发需求 → 筛标签 → 推荐人，城市优先 + 标签重合 + 互惠交换</p></div></td>
+    <td width="33%" style="padding-left:4mm"><div class="feat"><div class="ico bg-peach">🎯</div><h4>约局 / 报名</h4><p>资料卡约局、报名进群、活动报名（二期），微信社群承接沟通</p></div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="33%" style="padding-right:4mm"><div class="feat"><div class="ico bg-sand">🗺️</div><h4>四城线路推荐</h4><p>深圳·杭州·昆明·大理，景点与线路只做推荐，不做预订</p></div></td>
+    <td width="33%" style="padding:0 4mm"><div class="feat"><div class="ico bg-orange">💬</div><h4>社群运营</h4><p>微信群 + 公众号 + 小红书，流量先收进私域</p></div></td>
+    <td width="33%" style="padding-left:4mm"><div class="feat"><div class="ico bg-teal">🖥️</div><h4>PC 官网优先</h4><p>年轻社交产品感 + 文旅风格，移动端不破版</p></div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="25%"><div class="live-item">✅ 官网 11 页已上线</div></td>
+    <td width="25%"><div class="live-item">✅ 资料卡 + 匹配 + 报名可用</div></td>
+    <td width="25%"><div class="live-item">✅ 四城线路内容就绪</div></td>
+    <td width="25%"><div class="live-item">🔄 私信 / 活动报名二期</div></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>04</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">04 · 市场空间</div>
+  <h2 class="sec-title">文旅 × AI 的交叉蓝海</h2>
+  <p class="sec-sub">四城联动，两个供给侧 + 两个目的地侧（市场规模为公开数据估算）</p>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="33%" style="padding-right:4mm"><div class="m-card"><div class="m-num">5.7 万亿</div><div class="m-label">国内旅游市场</div><div class="m-desc">2024 年国内出游人次与消费持续增长，深度游、在地体验需求上升</div></div></td>
+    <td width="33%" style="padding:0 4mm"><div class="m-card"><div class="m-num">千万级</div><div class="m-label">云南旅居人群</div><div class="m-desc">大理、昆明旅居与数字游民群体逐年增长，带玩与在地服务需求旺盛</div></div></td>
+    <td width="33%" style="padding-left:4mm"><div class="m-card"><div class="m-num">百亿级</div><div class="m-label">AI 技能培训</div><div class="m-desc">一线 AI 从业者供给富余，下沉市场与在地从业者学习需求未被满足</div></div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="25%" style="padding-right:3mm"><div class="city"><img src="img/city-shenzhen.jpg" alt="深圳"><b>深圳</b><small>AI 技能 · 供给</small></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="city"><img src="img/city-hangzhou.jpg" alt="杭州"><b>杭州</b><small>互联网 · 供给</small></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="city"><img src="img/city-kunming.jpg" alt="昆明"><b>昆明</b><small>春城 · 目的地</small></div></td>
+    <td width="25%" style="padding-left:3mm"><div class="city"><img src="img/city-dali.jpg" alt="大理"><b>大理</b><small>旅居 · 目的地</small></div></td>
+  </tr></table>
+  <p style="margin-top:8mm;font-size:11px;color:#8d7e72;text-align:center">* 市场规模为基于公开行业报告的估算，用于说明赛道空间，不代表公司预测。</p>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>05</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">05 · 商业模式</div>
+  <h2 class="sec-title">六阶段演变路径</h2>
+  <p class="sec-sub">先跑通社区与交换，再逐级叠加商业化能力</p>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="20%"><div class="b-phase" style="color:#ff5a3c;font-weight:900">V1 · 现在</div></td>
+    <td width="65%"><div class="b-name" style="font-size:14.5px;font-weight:800">兴趣社区 + 技能交换</div><div class="b-desc" style="font-size:12px;color:#6b5d52">官网 + 社群 + 资料卡 + 匹配，跑通流量与交换闭环</div></td>
+    <td width="15%" style="text-align:right"><span class="b-status st-now">进行中</span></td>
+  </tr></table>
+  <div style="height:4mm"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="20%"><div class="b-phase" style="color:#ff5a3c;font-weight:900">V2</div></td>
+    <td width="65%"><div class="b-name" style="font-size:14.5px;font-weight:800">撮合与活动</div><div class="b-desc" style="font-size:12px;color:#6b5d52">私信、活动报名、付费服务撮合（带玩/陪游/摄影/包车）</div></td>
+    <td width="15%" style="text-align:right"><span class="b-status st-next">二期</span></td>
+  </tr></table>
+  <div style="height:4mm"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="20%"><div class="b-phase" style="color:#ff5a3c;font-weight:900">V3</div></td>
+    <td width="65%"><div class="b-name" style="font-size:14.5px;font-weight:800">AI 技能课程</div><div class="b-desc" style="font-size:12px;color:#6b5d52">深圳侧教学沉淀为线上/线下课程，双向变现</div></td>
+    <td width="15%" style="text-align:right"><span class="b-status st-future">远期</span></td>
+  </tr></table>
+  <div style="height:4mm"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="20%"><div class="b-phase" style="color:#ff5a3c;font-weight:900">V4</div></td>
+    <td width="65%"><div class="b-name" style="font-size:14.5px;font-weight:800">本地体验产品</div><div class="b-desc" style="font-size:12px;color:#6b5d52">云南带玩体验化、旅居套餐产品化</div></td>
+    <td width="15%" style="text-align:right"><span class="b-status st-future">远期</span></td>
+  </tr></table>
+  <div style="height:4mm"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="20%"><div class="b-phase" style="color:#ff5a3c;font-weight:900">V5</div></td>
+    <td width="65%"><div class="b-name" style="font-size:14.5px;font-weight:800">企业游学 / 团建</div><div class="b-desc" style="font-size:12px;color:#6b5d52">企业 AI 游学、双城团建（To B）</div></td>
+    <td width="15%" style="text-align:right"><span class="b-status st-future">远期</span></td>
+  </tr></table>
+  <div style="height:4mm"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="20%"><div class="b-phase" style="color:#ff5a3c;font-weight:900">V6</div></td>
+    <td width="65%"><div class="b-name" style="font-size:14.5px;font-weight:800">会员制社群</div><div class="b-desc" style="font-size:12px;color:#6b5d52">双城玩家会员，订阅制收入</div></td>
+    <td width="15%" style="text-align:right"><span class="b-status st-future">远期</span></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>06</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">06 · 验证与目标</div>
+  <h2 class="sec-title">已上线，冷启动进行中</h2>
+  <p class="sec-sub">种子用户已验证需求方向，目标指标按上线首月规划</p>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="25%" style="padding-right:3mm"><div class="data-cell"><div class="d-num orange">✓</div><div class="d-label">产品已上线</div><div class="d-note">官网 11 页 + 完整功能原型</div></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="data-cell"><div class="d-num">几十</div><div class="d-label">种子用户</div><div class="d-note">报名 + 社群（增长中）</div></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="data-cell"><div class="d-num">3,000</div><div class="d-label">首月 UV 目标</div><div class="d-note">官网访问量</div></div></td>
+    <td width="25%" style="padding-left:3mm"><div class="data-cell"><div class="d-num">150</div><div class="d-label">首月报名目标</div><div class="d-note">深圳 + 云南报名表</div></div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="25%" style="padding-right:3mm"><div class="data-cell"><div class="d-num">60</div><div class="d-label">资料卡目标</div><div class="d-note">公开名片完善数</div></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="data-cell"><div class="d-num">600</div><div class="d-label">社群目标</div><div class="d-note">3 群沉淀人数</div></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="data-cell"><div class="d-num orange">10</div><div class="d-label">组局目标</div><div class="d-note">自发组局次数</div></div></td>
+    <td width="25%" style="padding-left:3mm"><div class="data-cell"><div class="d-num">40</div><div class="d-label">需求目标</div><div class="d-note">需求墙发布数</div></div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="33%"><div class="live-item">📈 核心验证点：双边供给能否拉平</div></td>
+    <td width="33%"><div class="live-item">🔑 关键假设：付费带玩是否有真实需求</div></td>
+    <td width="33%"><div class="live-item">🎯 北极星：完成资料卡并进群的活跃用户</div></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>07</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">07 · 竞争分析</div>
+  <h2 class="sec-title">没有直接对手，各有差异</h2>
+  <p class="sec-sub">传统平台解决「交易」，我们解决「人与人交换」与「交朋友」</p>
+  <div class="spacer"></div>
+  <table class="cmp-table" cellpadding="0" cellspacing="0">
+    <tr><th style="text-align:left">对比维度</th><th>传统 OTA</th><th>技能交换平台</th><th>兴趣社区</th><th style="background:#ff5a3c">双城记</th></tr>
+    <tr><td>核心</td><td>预订交易</td><td>技能互换</td><td>内容社交</td><td>文旅 × AI 交换</td></tr>
+    <tr><td>双边属性</td><td class="no">单边</td><td class="yes">双边</td><td class="no">单边</td><td class="yes">双边强绑定</td></tr>
+    <tr><td>线下带玩</td><td class="no">无</td><td class="no">无</td><td class="no">无</td><td class="yes">核心场景</td></tr>
+    <tr><td>AI 教学</td><td class="no">无</td><td class="yes">有</td><td class="no">无</td><td class="yes">供给端绑定</td></tr>
+    <tr><td>付费服务</td><td class="yes">有</td><td class="no">无</td><td class="no">无</td><td class="yes">带玩/摄影/包车</td></tr>
+    <tr style="background:#ffe9e2"><td>差异化</td><td colspan="4" style="text-align:left">文旅 × AI 双向交换 + 四城联动 + 公开名片社区，先自由组局再谈撮合</td></tr>
+  </table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>08</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">08 · 团队</div>
+  <h2 class="sec-title">创始人全职投入，自带在地资源</h2>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="42%" style="padding-right:10mm"><div style="background:#fff;border-radius:12px;padding:18px;text-align:center">
+      <div class="t-avatar">双</div>
+      <h3 style="font-size:18px;margin-top:8px">创始人</h3>
+      <div class="t-role">全职 · 文旅 / 云南 / 旅居背景</div>
+      <p style="font-size:12.5px;color:#6b5d52;margin-top:8px;line-height:1.7">深谙云南在地生活与文旅资源，理解旅居人群真实需求；从需求调研、产品设计到官网上线、社群运营全程独立完成，具备从 0 到 1 的执行力。</p>
+    </div></td>
+    <td width="58%">
+      <div class="advisor"><span class="a-tag">AI 侧</span><p>深圳 / 杭州 AI 从业者顾问网络：产品、工程、运营背景，可承接教学供给与课程内容</p></div>
+      <div style="height:4mm"></div>
+      <div class="advisor"><span class="a-tag">云南侧</span><p>昆明 / 大理本地资源网络：民宿、咖啡馆、文旅从业者，可承接带玩供给与在地内容</p></div>
+      <div style="height:4mm"></div>
+      <div class="advisor"><span class="a-tag">运营侧</span><p>小红书 / 公众号 / 社群运营能力，冷启动阶段可独立完成内容与增长</p></div>
+    </td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>09</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">09 · 融资需求</div>
+  <h2 class="sec-title">种子轮 · 100 万内</h2>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="48%" style="padding-right:10mm"><div class="fund-left">
+      <div class="f-amount">100 万</div>
+      <div class="f-sub">种子轮 · 出让 10%-15%</div>
+      <div style="margin-top:10px">
+        <div class="f-item">产品迭代：官网升级、匹配系统、私信、活动报名</div>
+        <div class="f-item">运营冷启动：社群运营、种子用户、人工撮合</div>
+        <div class="f-item">市场与内容：小红书种草、公众号、线路内容</div>
+        <div class="f-item">合规与预留：主体注册、安全与法务、应急资金</div>
+      </div>
+    </div></td>
+    <td width="52%"><div style="background:#fff;border-radius:12px;padding:18px">
+      <h4 style="font-size:16px;font-weight:800">资金用途分配</h4>
+      <div style="margin-top:12px">
+        <div style="margin-top:8px"><span class="a-name">产品开发</span><span class="a-track"><span class="a-fill" style="width:40%;background:#ff5a3c"></span></span><span class="a-pct"> 40%</span></div>
+        <div style="margin-top:8px"><span class="a-name">运营冷启动</span><span class="a-track"><span class="a-fill" style="width:30%;background:#0e7c7b"></span></span><span class="a-pct"> 30%</span></div>
+        <div style="margin-top:8px"><span class="a-name">市场与内容</span><span class="a-track"><span class="a-fill" style="width:20%;background:#ffb49c"></span></span><span class="a-pct"> 20%</span></div>
+        <div style="margin-top:8px"><span class="a-name">合规与预留</span><span class="a-track"><span class="a-fill" style="width:10%;background:#b3a79c"></span></span><span class="a-pct"> 10%</span></div>
+      </div>
+      <div class="alloc-note">* 具体金额与出让比例可议，欢迎交流。</div>
+    </div></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>10</span></div>
+</section>
+
+<section class="slide">
+  <div class="sec-no">10 · 里程碑</div>
+  <h2 class="sec-title">12 个月，从社区到闭环</h2>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td width="25%" style="padding-right:3mm"><div class="mile"><div class="m-phase">0-3 月</div><h4>跑通社区</h4><p>官网 v2、1000 用户、60 张资料卡、10 次组局、3 个群</p></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="mile"><div class="m-phase">3-6 月</div><h4>验证撮合</h4><p>私信 + 匹配系统上线、3000 用户、付费带玩试点 3-5 单</p></div></td>
+    <td width="25%" style="padding:0 3mm"><div class="mile"><div class="m-phase">6-9 月</div><h4>内容破圈</h4><p>小红书起量、AI 公开课系列、线下见面局（深圳 + 大理）</p></div></td>
+    <td width="25%" style="padding-left:3mm"><div class="mile"><div class="m-phase">9-12 月</div><h4>商业闭环</h4><p>活动报名、课程试点、企业游学线索、1 万用户、会员制探索</p></div></td>
+  </tr></table>
+  <div class="spacer"></div>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td><div class="live-item" style="background:#0e333b;color:#fff;border:none">🎯 目标：12 个月内跑通「社区 → 撮合 → 付费服务」最小商业闭环</div></td>
+  </tr></table>
+  <div class="foot-note"><span>双城记 DUAL CITY</span><span>11</span></div>
+</section>
+
+<section class="slide end">
+  <div style="margin-top:60mm">
+    <h1 style="font-size:46px;font-weight:900;letter-spacing:6px;color:#fff">让双城的人，互相成为对方的本地朋友</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,.85);margin-top:14px;letter-spacing:2px">深圳教 AI，云南带玩 · 用技能换风景，用交换交朋友</p>
+    <p style="font-size:15px;color:#ffb49c;margin-top:10px;font-weight:700">https://fengliwei001.github.io/dual-city/</p>
+    <div style="margin-top:24px;font-size:13px;color:rgba(255,255,255,.8)">📮 欢迎交流 BP 与投资　　📍 深圳 · 大理</div>
+  </div>
+  <div class="foot-note" style="color:rgba(255,255,255,.45)"><span>双城记 DUAL CITY</span><span>12 / 12</span></div>
+</section>
+
+</body>
+</html>
